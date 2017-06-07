@@ -74,6 +74,7 @@ public class NerdLauncherFragment extends Fragment {
         public ActivityHolder(View itemView) {
             super(itemView);
             mNameTextView = (TextView) itemView;
+            mNameTextView.setOnClickListener(this);
         }
 
         public void bindActivity(ResolveInfo resolveInfo) {
@@ -88,7 +89,8 @@ public class NerdLauncherFragment extends Fragment {
             ActivityInfo activityInfo = mResolveInfo.activityInfo;
 
             Intent i = new Intent(Intent.ACTION_MAIN)
-                    .setClassName(activityInfo.applicationInfo.packageName, activityInfo.name);
+                    .setClassName(activityInfo.applicationInfo.packageName, activityInfo.name)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }
     }
